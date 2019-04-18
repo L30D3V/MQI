@@ -185,11 +185,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documentos\\Projetos\\MostQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj",
+      "projectUniqueName": "D:\\Documentos\\Projetos\\MostQI\\Reset\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj",
       "projectName": "Infrastructure.Logging",
-      "projectPath": "D:\\Documentos\\Projetos\\MostQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj",
+      "projectPath": "D:\\Documentos\\Projetos\\MostQI\\Reset\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj",
       "packagesPath": "C:\\Users\\leo-t\\.nuget\\packages\\",
-      "outputPath": "D:\\Documentos\\Projetos\\MostQI\\src\\Infrastructure.Logging\\obj\\",
+      "outputPath": "D:\\Documentos\\Projetos\\MostQI\\Reset\\src\\Infrastructure.Logging\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
