@@ -1,0 +1,17 @@
+D:\Documentos\Projetos\MostQI\src\WebApi\bin\Debug\netcoreapp2.1\WebApi.deps.json
+D:\Documentos\Projetos\MostQI\src\WebApi\bin\Debug\netcoreapp2.1\WebApi.runtimeconfig.json
+D:\Documentos\Projetos\MostQI\src\WebApi\bin\Debug\netcoreapp2.1\WebApi.runtimeconfig.dev.json
+D:\Documentos\Projetos\MostQI\src\WebApi\bin\Debug\netcoreapp2.1\WebApi.dll
+D:\Documentos\Projetos\MostQI\src\WebApi\bin\Debug\netcoreapp2.1\WebApi.pdb
+D:\Documentos\Projetos\MostQI\src\WebApi\bin\Debug\netcoreapp2.1\Infrastructure.Logging.dll
+D:\Documentos\Projetos\MostQI\src\WebApi\bin\Debug\netcoreapp2.1\Infrastructure.Logging.pdb
+D:\Documentos\Projetos\MostQI\src\WebApi\obj\Debug\netcoreapp2.1\WebApi.csprojAssemblyReference.cache
+D:\Documentos\Projetos\MostQI\src\WebApi\obj\Debug\netcoreapp2.1\WebApi.csproj.CoreCompileInputs.cache
+D:\Documentos\Projetos\MostQI\src\WebApi\obj\Debug\netcoreapp2.1\WebApi.RazorAssemblyInfo.cache
+D:\Documentos\Projetos\MostQI\src\WebApi\obj\Debug\netcoreapp2.1\WebApi.RazorAssemblyInfo.cs
+D:\Documentos\Projetos\MostQI\src\WebApi\obj\Debug\netcoreapp2.1\WebApi.AssemblyInfoInputs.cache
+D:\Documentos\Projetos\MostQI\src\WebApi\obj\Debug\netcoreapp2.1\WebApi.AssemblyInfo.cs
+D:\Documentos\Projetos\MostQI\src\WebApi\obj\Debug\netcoreapp2.1\WebApi.RazorTargetAssemblyInfo.cache
+D:\Documentos\Projetos\MostQI\src\WebApi\obj\Debug\netcoreapp2.1\WebApi.csproj.CopyComplete
+D:\Documentos\Projetos\MostQI\src\WebApi\obj\Debug\netcoreapp2.1\WebApi.dll
+D:\Documentos\Projetos\MostQI\src\WebApi\obj\Debug\netcoreapp2.1\WebApi.pdb
