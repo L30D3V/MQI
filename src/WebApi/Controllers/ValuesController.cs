@@ -10,36 +10,69 @@ namespace WebApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // GET api/values
+        private static readonly Dictionary<string, string> initial_tests = new Dictionary<string, string>();
+
+        // GET - Retorna todos os valores salvos em initial_tests
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public IEnumerable<ValuePairTest> Get()
         {
-            return new string[] { "value1", "value2" };
+            foreach(var test in initial_tests){
+                yield return new ValuePairTest(test.Key, test.Value);
+            }
         }
 
-        // GET api/values/5
+        // GET - Retorna valor com o id informado ou nulo caso inexistente
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ValuePairTest Get(string id)
         {
-            return "value";
+            return initial_tests.ContainsKey(id) ? new ValuePairTest(id, initial_tests[id]) : null;
         }
 
-        // POST api/values
+        // POST - Insere novo valor com id aleatório
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] ValueTest valueEnvelope)
         {
+            var id = Guid.NewGuid().ToString();
+            initial_tests.Add(id, valueEnvelope.value);
         }
 
-        // PUT api/values/5
+        // PUT - Insere valor no id informado
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(string id, [FromBody] ValueTest valueEnvelope)
         {
+            if (initial_tests.ContainsKey(id))
+                initial_tests[id] = valueEnvelope.value;
         }
 
-        // DELETE api/values/5
+        // DELETE - Remove valor no id informado
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(string id)
         {
+            if (initial_tests.ContainsKey(id))
+                initial_tests.Remove(id);
+        }
+
+
+        // Valor sem Id
+        public class ValueTest 
+        {
+            public string value { get; private set; }
+
+            public ValueTest(string value) {
+                this.value = value;
+            }
+        }
+
+        // Classe salva no Dictionary initial_tests
+        public class ValuePairTest
+        {
+            public string id { get; private set; }
+            public string value { get; private set; }
+
+            public ValuePairTest(string id, string value) {
+                this.id = id;
+                this.value = value;
+            }
         }
     }
 }
