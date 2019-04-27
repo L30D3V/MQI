@@ -54,6 +54,10 @@
             "Serilog.Sinks.ColoredConsole": {
               "target": "Package",
               "version": "[3.0.1, )"
+            },
+            "Serilog.Sinks.ElasticSearch": {
+              "target": "Package",
+              "version": "[7.1.0, )"
             }
           },
           "imports": [

@@ -36,71 +36,98 @@ namespace WebApi.Controllers
         [HttpGet]
         public IEnumerable<ValuePairTest> Get()
         {
-            // Log GET
-            logger.Information("GET /api/values");
+            try {
+                // Log GET
+                logger.Information("GET /api/values");
 
-            // Recupera todos os valores em "values"
-            var c = db.GetCollection<ValuePairTest>("values");
-            // Retorna todos os valores em formato de Lista
-            return c.Find(Builders<ValuePairTest>.Filter.Empty).ToList();
+                // Recupera todos os valores em "values"
+                var c = db.GetCollection<ValuePairTest>("values");
+                // Retorna todos os valores em formato de Lista
+                return c.Find(Builders<ValuePairTest>.Filter.Empty).ToList();
+            }
+            catch (Exception ex) {
+                logger.Information("Falha ao processar comando: " + ex.Message);
+                return null;
+            }
         }
 
         // GET - Retorna valor com o id informado ou nulo caso inexistente
         [HttpGet("{id}")]
         public ValuePairTest Get(string id)
         {
-            // Log GET por ID
-            logger.Information($"GET /api/values/{id}");
+            try {
+                // Log GET por ID
+                logger.Information($"GET /api/values/{id}");
 
-            // Recupera todos os valores em "values"
-            var c = db.GetCollection<ValuePairTest>("values");
-            // Retorna valores que correspondem ao ID informado ou nulo caso não exista
-            return c.Find(Builders<ValuePairTest>.Filter.Eq(x => x.id, id)).FirstOrDefault();
+                // Recupera todos os valores em "values"
+                var c = db.GetCollection<ValuePairTest>("values");
+                // Retorna valores que correspondem ao ID informado ou nulo caso não exista
+                return c.Find(Builders<ValuePairTest>.Filter.Eq(x => x.id, id)).FirstOrDefault();
+            }
+            catch (Exception ex) {
+                logger.Information("Falha ao processar comando: " + ex.Message);
+                return null;
+            }
         }
 
         // POST - Insere novo valor com id aleatório
         [HttpPost]
         public void Post([FromBody] ValueTest valueEnvelope)
         {
-            // Extrai value informado
-            var v = valueEnvelope?.value;
-            // Log POST
-            logger.Information($"POST /api/values {v}");
-            // Cria novo ID
-            var id = Guid.NewGuid().ToString();
-            // Recupera todos os valores em "values"
-            var c = db.GetCollection<ValuePairTest>("values");
-            // Cria novo PairType de dados
-            var d = new ValuePairTest(id, v);
-            // Insere valor criado no database
-            c.InsertOne(d);
+            try {
+                // Extrai value informado
+                var v = valueEnvelope?.value;
+                // Log POST
+                logger.Information($"POST /api/values {v}");
+                // Cria novo ID
+                var id = Guid.NewGuid().ToString();
+                // Recupera todos os valores em "values"
+                var c = db.GetCollection<ValuePairTest>("values");
+                // Cria novo PairType de dados
+                var d = new ValuePairTest(id, v);
+                // Insere valor criado no database
+                c.InsertOne(d);
+            }
+            catch (Exception ex) {
+                logger.Information("Falha ao processar comando: " + ex.Message);
+            }
         }
 
         // PUT - Insere valor no id informado
         [HttpPut("{id}")]
         public void Put(string id, [FromBody] ValueTest valueEnvelope)
         {
-            // Extrai value informado
-            var v = valueEnvelope?.value;
-            // Log PUT
-            logger.Information($"PUT /api/values {v}");
-            // Recupera todos os valores em "values"
-            var c = db.GetCollection<ValuePairTest>("values");
-            // Filtra valores por id e faz update de seu value
-            c.UpdateOne(Builders<ValuePairTest>.Filter.Eq(x => x.id, id), Builders<ValuePairTest>.Update.Set(x => x.value, v));
+            try {
+                // Extrai value informado
+                var v = valueEnvelope?.value;
+                // Log PUT
+                logger.Information($"PUT /api/values {v}");
+                // Recupera todos os valores em "values"
+                var c = db.GetCollection<ValuePairTest>("values");
+                // Filtra valores por id e faz update de seu value
+                c.UpdateOne(Builders<ValuePairTest>.Filter.Eq(x => x.id, id), Builders<ValuePairTest>.Update.Set(x => x.value, v));
+            }
+            catch (Exception ex) {
+                logger.Information("Falha ao processar comando: " + ex.Message);
+            }
         }
 
         // DELETE - Remove valor no id informado
         [HttpDelete("{id}")]
         public void Delete(string id)
         {
-            // Log DELETE
-            logger.Information($"DELETE /api/values/{id}");
+            try {
+                // Log DELETE
+                logger.Information($"DELETE /api/values/{id}");
 
-            // Recupera todos os valores em "values"
-            var c = db.GetCollection<ValuePairTest>("values");
-            // Filtra valor por ID e remove valor correspondente
-            c.DeleteOne(Builders<ValuePairTest>.Filter.Eq(x => x.id, id));
+                // Recupera todos os valores em "values"
+                var c = db.GetCollection<ValuePairTest>("values");
+                // Filtra valor por ID e remove valor correspondente
+                c.DeleteOne(Builders<ValuePairTest>.Filter.Eq(x => x.id, id));
+            }
+            catch (Exception ex) {
+                logger.Information("Falha ao processar comando: " + ex.Message);
+            }
         }
 
 

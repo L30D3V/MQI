@@ -39,7 +39,7 @@ namespace Client.Random
             Func<string, string> settingsResolver = (name) => configuration[name];
 
             var loggingLevelSwitch = new LoggingLevelSwitch();
-            Log.Logger = Infrastructure.Logging.ApplicationLogging.CreateLogger(settingsResolver, "docker-dotnetcore-client", loggingLevelSwitch, "./logs-buffer-client");
+            Log.Logger = Infrastructure.Logging.ApplicationLogging.CreateLogger(settingsResolver, "docker-dotnetcore-client", loggingLevelSwitch, "./logs");
             logger = Log.ForContext<Program>();
 
             var apiUrl = settingsResolver("ApiUrl");
@@ -53,14 +53,14 @@ namespace Client.Random
             while (true)
             {
                 var c = GetRandomCommand();
-                logger.Debug($"Processing command {c}");
+                logger.Information($"Processing command {c}");
 
                 var request = GetRequest(c, apiUrl);
                 try
                 {
                     logger.Information($"{request.Method} {request.RequestUri}");
                     var response = apiClient.SendAsync(request).Result;
-                    logger.Debug($"{response.StatusCode}");
+                    logger.Information($"{response.StatusCode}");
 
                     Thread.Sleep(rnd.Next(maxDelayMs));
                 }
