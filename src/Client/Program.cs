@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
-using System.Threading;
 using System.Text;
+using System.Threading;
 
 using Microsoft.Extensions.Configuration;
+
+using Serilog;
+using Serilog.Core;
 
 namespace Client.Random
 {
     class Program
     {
+        private static ILogger logger;
         private static readonly Command[] allCommands;
         private static string id;
 
@@ -20,9 +24,9 @@ namespace Client.Random
             foreach (var c in Enum.GetValues(typeof(Command)))
             {
                 list.Add((Command)c);
-            }
+            };
 
-            allCommands = list.ToArray();
+            allCommands = list.ToArray();            
         }
 
         static void Main(string[] args)
@@ -34,63 +38,37 @@ namespace Client.Random
             var configuration = configurationBuilder.Build();
             Func<string, string> settingsResolver = (name) => configuration[name];
 
+            var loggingLevelSwitch = new LoggingLevelSwitch();
+            Log.Logger = Infrastructure.Logging.ApplicationLogging.CreateLogger(settingsResolver, "docker-dotnetcore-client", loggingLevelSwitch, "./logs-buffer-client");
+            logger = Log.ForContext<Program>();
+
             var apiUrl = settingsResolver("ApiUrl");
             var maxDelay = TimeSpan.Parse(settingsResolver("MaxDelay"));
             var maxDelayMs = (int)maxDelay.TotalMilliseconds;
-            var random = new System.Random();
+            var rnd = new System.Random();
 
-            Console.WriteLine($"REST API Random Test Client. API Url: {apiUrl}");
+            logger.Information($"REST API Random Test Client. API Url: {apiUrl}");
             var apiClient = new HttpClient();
 
             while (true)
             {
                 var c = GetRandomCommand();
-                Console.WriteLine($"Processing command {c}");
+                logger.Debug($"Processing command {c}");
 
                 var request = GetRequest(c, apiUrl);
                 try
                 {
-                    Console.WriteLine($"{request.Method} {request.RequestUri}");
+                    logger.Information($"{request.Method} {request.RequestUri}");
                     var response = apiClient.SendAsync(request).Result;
-                    Console.WriteLine($"{response.StatusCode}");
-                    
-                    Thread.Sleep(random.Next(maxDelayMs));
+                    logger.Debug($"{response.StatusCode}");
+
+                    Thread.Sleep(rnd.Next(maxDelayMs));
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Failed to process command {c}: {ex.Message}");
+                    logger.Error(ex, $"Failed to process command {c}");
                 }
             }
-        }
-
-        private static Command GetRandomCommand()
-        {
-            Command? c;
-
-            do
-            {
-                c = allCommands.TakeRandom();
-                switch (c.Value)
-                {
-                    case Command.GetAll:
-                        break;
-
-                    case Command.Add:
-                        id = Guid.NewGuid().ToString();
-                        break;
-
-                    case Command.DeleteById:
-                    case Command.GetById:
-                    case Command.SetById:
-                        if (string.IsNullOrEmpty(id)) c = null;
-                        break;
-
-                    default:
-                        break;
-                }
-            } while (!c.HasValue);
-
-            return c.Value;
         }
 
         private static HttpRequestMessage GetRequest(Command c, string apiUrl)
@@ -126,6 +104,44 @@ namespace Client.Random
             }
 
             return request;
+        }
+
+        private static void PrintResponse(HttpResponseMessage response, HttpMethod method, Uri requestUri)
+        {
+            Console.WriteLine("");
+            Console.WriteLine($"RESPONSE ({method} {requestUri}):");
+            Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+            Console.WriteLine("");
+        }
+
+        private static Command GetRandomCommand()
+        {
+            Command? c;
+
+            do
+            {
+                c = allCommands.TakeRandom();
+                switch (c.Value)
+                {
+                    case Command.GetAll:
+                        break;
+
+                    case Command.Add:
+                        id = Guid.NewGuid().ToString();
+                        break;
+
+                    case Command.DeleteById:
+                    case Command.GetById:
+                    case Command.SetById:
+                        if (string.IsNullOrEmpty(id)) c = null;
+                        break;
+
+                    default:
+                        break;
+                }
+            } while (!c.HasValue);
+
+            return c.Value;
         }
 
         private enum Command

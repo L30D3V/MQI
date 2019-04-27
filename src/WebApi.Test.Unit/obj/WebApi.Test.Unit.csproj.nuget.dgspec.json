@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\WebApi.Test.Unit.csproj": {}
+    "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\WebApi.Test.Unit.csproj": {}
   },
   "projects": {
-    "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj": {
+    "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj",
+        "projectUniqueName": "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj",
         "projectName": "Infrastructure.Logging",
-        "projectPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj",
+        "projectPath": "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj",
         "packagesPath": "C:\\Users\\leo-t\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\obj\\",
+        "outputPath": "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -46,6 +46,14 @@
               "target": "Package",
               "version": "[2.0.3, )",
               "autoReferenced": true
+            },
+            "Serilog": {
+              "target": "Package",
+              "version": "[2.8.0, )"
+            },
+            "Serilog.Sinks.ColoredConsole": {
+              "target": "Package",
+              "version": "[3.0.1, )"
             }
           },
           "imports": [
@@ -56,14 +64,14 @@
         }
       }
     },
-    "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\WebApi.Test.Unit.csproj": {
+    "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\WebApi.Test.Unit.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\WebApi.Test.Unit.csproj",
+        "projectUniqueName": "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\WebApi.Test.Unit.csproj",
         "projectName": "WebApi.Test.Unit",
-        "projectPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\WebApi.Test.Unit.csproj",
+        "projectPath": "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\WebApi.Test.Unit.csproj",
         "packagesPath": "C:\\Users\\leo-t\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\obj\\",
+        "outputPath": "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -82,11 +90,11 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj": {
-                "projectPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj"
+              "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj": {
+                "projectPath": "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj"
               },
-              "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj": {
-                "projectPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj"
+              "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj": {
+                "projectPath": "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj"
               }
             }
           }
@@ -127,14 +135,14 @@
         }
       }
     },
-    "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj": {
+    "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj",
+        "projectUniqueName": "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj",
+        "projectPath": "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj",
         "packagesPath": "C:\\Users\\leo-t\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi\\obj\\",
+        "outputPath": "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -153,8 +161,8 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj": {
-                "projectPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj"
+              "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj": {
+                "projectPath": "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj"
               }
             }
           }
@@ -179,10 +187,26 @@
               "target": "Package",
               "version": "[2.1.2, )"
             },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
             "Microsoft.NETCore.App": {
               "target": "Package",
               "version": "[2.1.0, )",
               "autoReferenced": true
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.8.0, )"
+            },
+            "Serilog": {
+              "target": "Package",
+              "version": "[2.8.0, )"
+            },
+            "Serilog.Sinks.ColoredConsole": {
+              "target": "Package",
+              "version": "[3.0.1, )"
             }
           },
           "imports": [
