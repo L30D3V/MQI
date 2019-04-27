@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\WebApi.Test.Unit.csproj": {}
+    "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\WebApi.Test.Unit.csproj": {}
   },
   "projects": {
-    "d:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj": {
+    "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj",
+        "projectUniqueName": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj",
         "projectName": "Infrastructure.Logging",
-        "projectPath": "d:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj",
+        "projectPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj",
         "packagesPath": "C:\\Users\\leo-t\\.nuget\\packages\\",
-        "outputPath": "d:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\obj\\",
+        "outputPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -56,14 +56,14 @@
         }
       }
     },
-    "d:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\WebApi.Test.Unit.csproj": {
+    "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\WebApi.Test.Unit.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\WebApi.Test.Unit.csproj",
+        "projectUniqueName": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\WebApi.Test.Unit.csproj",
         "projectName": "WebApi.Test.Unit",
-        "projectPath": "d:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\WebApi.Test.Unit.csproj",
+        "projectPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\WebApi.Test.Unit.csproj",
         "packagesPath": "C:\\Users\\leo-t\\.nuget\\packages\\",
-        "outputPath": "d:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\obj\\",
+        "outputPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi.Test.Unit\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -82,11 +82,11 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "d:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj": {
-                "projectPath": "d:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj"
+              "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj": {
+                "projectPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj"
               },
-              "d:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj": {
-                "projectPath": "d:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj"
+              "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj": {
+                "projectPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj"
               }
             }
           }
@@ -127,14 +127,14 @@
         }
       }
     },
-    "d:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj": {
+    "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj",
+        "projectUniqueName": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "d:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj",
+        "projectPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi\\WebApi.csproj",
         "packagesPath": "C:\\Users\\leo-t\\.nuget\\packages\\",
-        "outputPath": "d:\\Documentos\\Projetos\\MostQI\\MQI\\src\\WebApi\\obj\\",
+        "outputPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -153,8 +153,8 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "d:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj": {
-                "projectPath": "d:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj"
+              "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj": {
+                "projectPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj"
               }
             }
           }

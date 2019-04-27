@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Client\\Client.csproj": {}
+    "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Client\\Client.csproj": {}
   },
   "projects": {
-    "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Client\\Client.csproj": {
+    "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Client\\Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Client\\Client.csproj",
+        "projectUniqueName": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Client\\Client.csproj",
         "projectName": "Client",
-        "projectPath": "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Client\\Client.csproj",
+        "projectPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Client\\Client.csproj",
         "packagesPath": "C:\\Users\\leo-t\\.nuget\\packages\\",
-        "outputPath": "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Client\\obj\\",
+        "outputPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Client\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -30,8 +30,8 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj": {
-                "projectPath": "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj"
+              "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj": {
+                "projectPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj"
               }
             }
           }
@@ -71,14 +71,14 @@
         }
       }
     },
-    "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj": {
+    "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj",
+        "projectUniqueName": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj",
         "projectName": "Infrastructure.Logging",
-        "projectPath": "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj",
+        "projectPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\Infrastructure.Logging.csproj",
         "packagesPath": "C:\\Users\\leo-t\\.nuget\\packages\\",
-        "outputPath": "D:\\Documentos\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\obj\\",
+        "outputPath": "D:\\Documents\\Projetos\\MostQI\\MQI\\src\\Infrastructure.Logging\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
