@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.1-sdk AS build-env
+FROM microsoft/dotnet:2.1-aspnetcore-runtime AS build-env
 WORKDIR /app
 EXPOSE 5000
 COPY _publish .
