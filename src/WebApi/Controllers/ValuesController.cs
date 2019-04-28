@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Serilog;
+using WebApi.Models;
 
 namespace WebApi.Controllers
 {
@@ -10,146 +12,94 @@ namespace WebApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // Inicializa variáveis globais
+        private readonly IWebApiRepository _repo;
         private readonly ILogger logger = Log.ForContext<ValuesController>();
-        private readonly MongoClient mongoClient;
-        private readonly IMongoDatabase db;
-        
-        //Construtor ValuesController
-        public ValuesController() {
-            logger.Verbose("ValuesController criado");
 
-            // Configura MongoDB e conecta-se ao banco de dados
-            var mongoClientSettings = new MongoClientSettings();
-            mongoClient = new MongoClient(mongoClientSettings);
-            db = mongoClient.GetDatabase(MongoDbConfiguration.DatabaseName);
-
-            // Verifica se Collection "values" existe e cria uma caso negativo
-            var c = db.GetCollection<ValuePairTest>("values");
-            if (c == null)
-            {
-                db.CreateCollection("values");
-            }
+        public ValuesController(IWebApiRepository repo) {
+            _repo = repo;
         }
 
-        // GET - Retorna todos os valores salvos em initial_tests
         [HttpGet]
-        public IEnumerable<ValuePairTest> Get()
+        public async Task<ActionResult<IEnumerable<ValuePairTest>>> Get()
         {
             try {
-                // Log GET
                 logger.Information("GET /api/values");
-
-                // Recupera todos os valores em "values"
-                var c = db.GetCollection<ValuePairTest>("values");
-                // Retorna todos os valores em formato de Lista
-                return c.Find(Builders<ValuePairTest>.Filter.Empty).ToList();
+                return new ObjectResult(await _repo.GetAllValues());
+            } catch (Exception ex) {
+                logger.Information("FALHA AO EXECUTAR A CHAMADA DA API: " + ex.Message);
+                return new NoContentResult();
             }
-            catch (Exception ex) {
-                logger.Information("Falha ao processar comando: " + ex.Message);
-                return null;
-            }
+            
         }
 
-        // GET - Retorna valor com o id informado ou nulo caso inexistente
         [HttpGet("{id}")]
-        public ValuePairTest Get(string id)
+        public async Task<ActionResult<ValuePairTest>> Get(string id)
         {
             try {
-                // Log GET por ID
                 logger.Information($"GET /api/values/{id}");
+                var value = await _repo.GetValue(id);
 
-                // Recupera todos os valores em "values"
-                var c = db.GetCollection<ValuePairTest>("values");
-                // Retorna valores que correspondem ao ID informado ou nulo caso não exista
-                return c.Find(Builders<ValuePairTest>.Filter.Eq(x => x.id, id)).FirstOrDefault();
+                if (value == null)
+                    return new NotFoundResult();
+                
+                return new ObjectResult(value);
+            } catch (Exception ex) {
+                logger.Information("FALHA AO EXECUTAR A CHAMADA DA API: " + ex.Message);
+                return new NoContentResult();
             }
-            catch (Exception ex) {
-                logger.Information("Falha ao processar comando: " + ex.Message);
-                return null;
-            }
+            
         }
 
-        // POST - Insere novo valor com id aleatório
         [HttpPost]
-        public void Post([FromBody] ValueTest valueEnvelope)
+        public async Task<ActionResult<ValuePairTest>> Post([FromBody] ValuePairTest value)
         {
             try {
-                // Extrai value informado
-                var v = valueEnvelope?.value;
-                // Log POST
-                logger.Information($"POST /api/values {v}");
-                // Cria novo ID
-                var id = Guid.NewGuid().ToString();
-                // Recupera todos os valores em "values"
-                var c = db.GetCollection<ValuePairTest>("values");
-                // Cria novo PairType de dados
-                var d = new ValuePairTest(id, v);
-                // Insere valor criado no database
-                c.InsertOne(d);
+                logger.Information($"POST /api/values {value}");
+                value.id = Guid.NewGuid().ToString();
+                await _repo.Create(value);
+                return new OkObjectResult(value);
+            } catch (Exception ex) {
+                logger.Information("FALHA AO EXECUTAR A CHAMADA DA API: " + ex.Message);
+                return new NoContentResult();
             }
-            catch (Exception ex) {
-                logger.Information("Falha ao processar comando: " + ex.Message);
-            }
+            
         }
 
-        // PUT - Insere valor no id informado
         [HttpPut("{id}")]
-        public void Put(string id, [FromBody] ValueTest valueEnvelope)
+        public async Task<ActionResult<ValuePairTest>> Put(string id, [FromBody] ValuePairTest value)
         {
             try {
-                // Extrai value informado
-                var v = valueEnvelope?.value;
-                // Log PUT
-                logger.Information($"PUT /api/values {v}");
-                // Recupera todos os valores em "values"
-                var c = db.GetCollection<ValuePairTest>("values");
-                // Filtra valores por id e faz update de seu value
-                c.UpdateOne(Builders<ValuePairTest>.Filter.Eq(x => x.id, id), Builders<ValuePairTest>.Update.Set(x => x.value, v));
-            }
-            catch (Exception ex) {
-                logger.Information("Falha ao processar comando: " + ex.Message);
+                logger.Information($"PUT /api/values/{value}");
+                var valueBD = await _repo.GetValue(id);
+
+                if (valueBD == null)
+                    return new NotFoundResult();
+
+                await _repo.Update(value);
+
+                return new OkObjectResult(value);            
+            } catch (Exception ex) {
+                logger.Information("FALHA AO EXECUTAR A CHAMADA DA API: " + ex.Message);
+                return new NoContentResult();
             }
         }
 
-        // DELETE - Remove valor no id informado
         [HttpDelete("{id}")]
-        public void Delete(string id)
+        public async Task<IActionResult> Delete(string id)
         {
             try {
-                // Log DELETE
                 logger.Information($"DELETE /api/values/{id}");
+                var value = await _repo.GetValue(id);
 
-                // Recupera todos os valores em "values"
-                var c = db.GetCollection<ValuePairTest>("values");
-                // Filtra valor por ID e remove valor correspondente
-                c.DeleteOne(Builders<ValuePairTest>.Filter.Eq(x => x.id, id));
-            }
-            catch (Exception ex) {
-                logger.Information("Falha ao processar comando: " + ex.Message);
-            }
-        }
+                if (value == null)
+                    return new NotFoundResult();
 
+                await _repo.Delete(id);
 
-        // Valor sem Id
-        public class ValueTest 
-        {
-            public string value { get; private set; }
-
-            public ValueTest(string value) {
-                this.value = value;
-            }
-        }
-
-        // Classe salva no Dictionary initial_tests
-        public class ValuePairTest
-        {
-            public string id { get; private set; }
-            public string value { get; private set; }
-
-            public ValuePairTest(string id, string value) {
-                this.id = id;
-                this.value = value;
+                return new OkResult();
+            } catch (Exception ex) {
+                logger.Information("FALHA AO EXECUTAR A CHAMADA DA API: " + ex.Message);
+                return new NoContentResult();
             }
         }
     }

@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog.Core;
 using Serilog;
+using WebApi.Models;
 
 namespace WebApi
 {
@@ -25,13 +26,13 @@ namespace WebApi
             var loggingLevelSwitch = new LoggingLevelSwitch();
             Log.Logger = Infrastructure.Logging.ApplicationLogging.CreateLogger(settingsResolver, "docker-dotnetcore-webapi", loggingLevelSwitch, "./logs");
 
-            MongoDbConfiguration.ServerAddress = settingsResolver("MongoDb.ServerAddress");
-            MongoDbConfiguration.ServerPort = int.Parse(settingsResolver("MongoDb.ServerPort"));
-            MongoDbConfiguration.DatabaseName = settingsResolver("MongoDb.DatabaseName");
-            MongoDbConfiguration.UserName = settingsResolver("MongoDb.UserName");
-            MongoDbConfiguration.UserPassword = settingsResolver("MongoDb.UserPassword");
+            // MongoDbConfiguration.ServerAddress = settingsResolver("MongoDb.ServerAddress");
+            // MongoDbConfiguration.ServerPort = int.Parse(settingsResolver("MongoDb.ServerPort"));
+            // MongoDbConfiguration.DatabaseName = settingsResolver("MongoDb.DatabaseName");
+            // MongoDbConfiguration.UserName = settingsResolver("MongoDb.UserName");
+            // MongoDbConfiguration.UserPassword = settingsResolver("MongoDb.UserPassword");
 
-            Log.Information($"WebAPI MongoDb: Server {MongoDbConfiguration.ServerAddress}:{MongoDbConfiguration.ServerPort}/{MongoDbConfiguration.DatabaseName}");
+            // Log.Information($"WebAPI MongoDb: Server {MongoDbConfiguration.ServerAddress}:{MongoDbConfiguration.ServerPort}/{MongoDbConfiguration.DatabaseName}");
         }
 
         public IConfiguration Configuration { get; }
@@ -39,6 +40,14 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var config = new ServerConfig();
+            Configuration.Bind(config);           
+
+            var todoContext = new WebApiContext(config.MongoDB);
+            var repo = new WebApiRepository(todoContext);
+
+            services.AddSingleton<IWebApiRepository>(repo);
+
             // Add framework services.
             services.AddMvc();
         }
