@@ -3,8 +3,6 @@ namespace WebApi.Models
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using MongoDB.Driver;
-    using MongoDB.Bson;
-    using System.Linq;
 
     public class WebApiRepository : IWebApiRepository
     {

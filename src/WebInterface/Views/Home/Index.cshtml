@@ -1,0 +1,28 @@
+﻿@model IEnumerable<WebInterface.Models.ValuePairTest>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-stripped">
+    <tr>
+        <th>ID</th>
+        <th>Value</th>
+        <th>Opções</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.id
+            </td>
+            <td>
+                @item.value
+            </td>
+            <td>
+                <a href="Delete/@item.id">Deletar</a>
+            </td>
+        </tr>
+    }
+</table>

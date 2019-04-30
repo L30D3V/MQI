@@ -25,14 +25,6 @@ namespace WebApi
 
             var loggingLevelSwitch = new LoggingLevelSwitch();
             Log.Logger = Infrastructure.Logging.ApplicationLogging.CreateLogger(settingsResolver, "docker-dotnetcore-webapi", loggingLevelSwitch, "./logs");
-
-            // MongoDbConfiguration.ServerAddress = settingsResolver("MongoDb.ServerAddress");
-            // MongoDbConfiguration.ServerPort = int.Parse(settingsResolver("MongoDb.ServerPort"));
-            // MongoDbConfiguration.DatabaseName = settingsResolver("MongoDb.DatabaseName");
-            // MongoDbConfiguration.UserName = settingsResolver("MongoDb.UserName");
-            // MongoDbConfiguration.UserPassword = settingsResolver("MongoDb.UserPassword");
-
-            // Log.Information($"WebAPI MongoDb: Server {MongoDbConfiguration.ServerAddress}:{MongoDbConfiguration.ServerPort}/{MongoDbConfiguration.DatabaseName}");
         }
 
         public IConfiguration Configuration { get; }
@@ -55,7 +47,6 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseStaticFiles();
             app.UseMvc();
         }
     }
