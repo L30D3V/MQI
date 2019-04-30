@@ -1,16 +1,6 @@
 version: "3"
 
 services:
-    interface:
-        image: docker-dotnetcore/webinterface:develop
-        build:
-            context: ../WebInterface
-            dockerfile: Dockerfile
-        ports: 
-            - "80:80"
-        depends_on:
-            - mongo
-            - webapi
     webapi:
         image: docker-dotnetcore/webapi:develop
         build:
