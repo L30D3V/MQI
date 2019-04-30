@@ -16,9 +16,15 @@ namespace WebInterface.Controllers
 
         public IActionResult Index()
         {
-            List<ValuePairTest> listValues = DbContext.TestValues.Find(m => true).ToList();
-
-            return View(listValues);
+            try
+            {
+                List<ValuePairTest> listValues = DbContext.TestValues.Find(m => true).ToList();
+                return View(listValues);
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         [HttpGet]
@@ -28,11 +34,25 @@ namespace WebInterface.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(ValuePairTest value)
+        public IActionResult Create([FromForm] ValuePairTest value)
         {
-            value.id = Guid.NewGuid().ToString();
+            try
+            {
+                ValuePairTest newData = new ValuePairTest
+                {
+                    id = Guid.NewGuid().ToString(),
+                    value = value.value
+                };
 
-            DbContext.TestValues.InsertOne(value);
+                DbContext.TestValues.InsertOne(newData);
+
+                TempData["Success"] = "Dados salvos com sucesso. Id: " + newData.id + " Value: " + newData.value;
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Falha ao salvar dados. Descrição do erro: " + ex;
+            }
+            
             return RedirectToAction("Index");
         }
 
@@ -44,11 +64,26 @@ namespace WebInterface.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(ValuePairTest value)
+        public IActionResult Update([FromForm] ValuePairTest value)
         {
-            DbContext.TestValues.ReplaceOne(x => x.id == value.id, value);
+            try
+            {
+                ValuePairTest newData = new ValuePairTest
+                {
+                    id = value.id,
+                    value = value.value
+                };
 
-            return View(value);
+                DbContext.TestValues.ReplaceOne(x => x.id == value.id, newData);
+
+                return View(newData);
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Erro ao atualizar o valor. Descrição do erro: " + ex.Message;
+                return RedirectToAction("Index");
+            }
+            
         }
 
         [HttpGet]
@@ -57,13 +92,6 @@ namespace WebInterface.Controllers
             DbContext.TestValues.DeleteOne(x => x.id == id);
 
             return RedirectToAction("Index");
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

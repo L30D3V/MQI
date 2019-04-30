@@ -1,28 +1,41 @@
 ﻿@model IEnumerable<WebInterface.Models.ValuePairTest>
-@{
-    ViewData["Title"] = "Home Page";
+
+<h2>Projeto: MostQI</h2>
+<h3>CRUD Simples</h3>
+
+@Html.ActionLink("Novo", "Create", "Home", null, new { @class = "btn btn-primary" })
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
 }
 
-<h2>@ViewData["Title"]</h2>
-
-<table class="table table-stripped">
-    <tr>
-        <th>ID</th>
-        <th>Value</th>
-        <th>Opções</th>
-    </tr>
-    @foreach (var item in Model)
-    {
+@if (Model != null)
+{
+    <table class="table table-stripped">
         <tr>
-            <td>
-                @item.id
-            </td>
-            <td>
-                @item.value
-            </td>
-            <td>
-                <a href="Delete/@item.id">Deletar</a>
-            </td>
+            <th>ID</th>
+            <th>Value</th>
+            <th>Opções</th>
         </tr>
-    }
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.id
+                </td>
+                <td>
+                    @item.value
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Update", new { id = item.id }, new { @class = "btn btn-dark btn-sm" })
+                    @Html.ActionLink("Deletar", "Delete", new { id = item.id }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+    </table>
+}
