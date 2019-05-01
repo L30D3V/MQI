@@ -11,7 +11,6 @@ namespace WebApi.Controllers
     public class HomeController : Controller
     {
         private readonly IWebApiRepository _repo;
-        private readonly ILogger logger = Log.ForContext<ValuesController>();
 
         public HomeController(IWebApiRepository repo)
         {
@@ -22,8 +21,7 @@ namespace WebApi.Controllers
         [Route("")]
         public IActionResult Index()
         {
-            List<ValuePairTest> values = new List<ValuePairTest>();
-            //var values = _repo.GetAllValues();
+            List<ValuePairTest> values = _repo.ListValues();
 
             return View(values);
         }
@@ -32,22 +30,29 @@ namespace WebApi.Controllers
         [Route("Edit/{id}")]
         public IActionResult Edit(string id)
         {
-            ValuePairTest value = new ValuePairTest();
-            //value = _repo.GetValueById(id);
+            ValuePairTest value = _repo.GetValueById(id);
 
             return View(value);
         }
 
         [HttpPost]
-        public IActionResult Edit(ValuePairTest value)
+        [Route("Edit/{id}")]
+        public IActionResult Edit([FromForm] ValuePairTest valueTest)
         {
             try
             {
-                bool editValue = _repo.EditById(value);
-                if (editValue)
+                if (ModelState.IsValid)
                 {
-                    TempData["Success"] = "Valor editado com sucesso.";
-                    return RedirectToAction("Index");
+                    bool editValue = _repo.EditById(valueTest);
+                    if (editValue)
+                    {
+                        TempData["Success"] = "Valor editado com sucesso.";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        throw new Exception("Falha ao conectar com o banco.");
+                    }
                 }
                 else
                 {
@@ -61,10 +66,10 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpGet]
+        [Route("Delete/{id}")]
         public IActionResult Delete(string id)
         {
-            ValuePairTest value = new ValuePairTest();
             bool deleteValue = _repo.DeleteById(id);
             if (deleteValue)
             {

@@ -7,6 +7,7 @@ namespace WebApi.Models
     {
         [BsonId]
         public string id { get; set; }
+        [BsonRequired]
         public string value { get; set; }
     }
 }

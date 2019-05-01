@@ -1,24 +1,24 @@
 version: "3"
 
 services:
-    webapi:
-        image: docker-dotnetcore/webapi:develop
-        build:
-            context: ../WebApi
-            dockerfile: Dockerfile
-        ports:
-            - "5000:5000"
-        depends_on: 
-            - mongo
-            - elasticsearch
-    client:
-        image: docker-dotnetcore/client:develop
-        build:
-            context: ../Client
-            dockerfile: Dockerfile
-        depends_on:
-            - webapi
-            - elasticsearch
+    # webapi:
+    #     image: docker-dotnetcore/webapi:develop
+    #     build:
+    #         context: ../WebApi
+    #         dockerfile: Dockerfile
+    #     ports:
+    #         - "5000:5000"
+    #     depends_on: 
+    #         - mongo
+    #         - elasticsearch
+    # client:
+    #     image: docker-dotnetcore/client:develop
+    #     build:
+    #         context: ../Client
+    #         dockerfile: Dockerfile
+    #     depends_on:
+    #         - webapi
+    #         - elasticsearch
     mongo:
         image: mongo:latest
         restart: always
