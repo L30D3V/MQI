@@ -1,5 +1,6 @@
 namespace WebApi.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using MongoDB.Driver;
@@ -37,6 +38,65 @@ namespace WebApi.Models
             FilterDefinition<ValuePairTest> filter = Builders<ValuePairTest>.Filter.Eq(m => m.id, id);
             DeleteResult deleteResult = await _context.TestValues.DeleteOneAsync(filter);
             return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
+        }
+
+        public List<ValuePairTest> ListValues()
+        {
+            try
+            {
+                List<ValuePairTest> values = new List<ValuePairTest>();
+                values = _context.TestValues.Find(_ => true).ToList();
+
+                return values;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao recuperar lista de valores", ex);
+            }
+        }
+
+        public ValuePairTest GetValueById(string id)
+        {
+            try
+            {
+                ValuePairTest value = new ValuePairTest();
+                value = _context.TestValues.Find(x => x.id.Equals(id)).FirstOrDefault();
+
+                return value;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao recuperar valor", ex);
+            }
+        }
+
+        // Recuperar valor específico por id
+        public bool DeleteById(string id)
+        {
+            try
+            {
+                FilterDefinition<ValuePairTest> filter = Builders<ValuePairTest>.Filter.Eq(m => m.id, id);
+                DeleteResult deleteResult = _context.TestValues.DeleteOne(filter);
+                return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao deletar o valor.", ex);
+            }
+        }
+
+        // Editar valor
+        public bool EditById(ValuePairTest value)
+        {
+            try
+            {
+                ReplaceOneResult updateResult = _context.TestValues.ReplaceOne(filter: g => g.id == value.id, replacement: value);
+                return updateResult.IsAcknowledged && updateResult.ModifiedCount > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao atualizar o valor.", ex);
+            }
         }
     }
 }

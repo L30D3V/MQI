@@ -19,5 +19,17 @@ namespace WebApi.Models
 
         // api/id/[DELETE]
         Task<bool> Delete(string id);
+
+        // Listar todos os valores
+        List<ValuePairTest> ListValues();
+
+        // Recuperar valor específico por id
+        ValuePairTest GetValueById(string id);
+
+        // Recuperar valor específico por id
+        bool DeleteById(string id);
+
+        // Editar valor
+        bool EditById(ValuePairTest value);
     }
 }
