@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebApi.Models
 {
-    // Modelo da classe funcionário que será salva no BD
+    // Model da classe funcionário que será salva no BD
     public class Funcionario
     {
         [BsonId]
@@ -28,6 +28,7 @@ namespace WebApi.Models
         public ObjectId Photo { get; set; }
     }
 
+    // Model da classe funcionário que será exibida em Views
     public class FuncionarioView
     {
         [BsonId]

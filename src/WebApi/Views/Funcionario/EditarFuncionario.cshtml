@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="EditarFuncionario">
+        <form asp-action="EditarFuncionario" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="CPF" class="control-label"></label>
@@ -37,10 +37,15 @@
                 <input asp-for="Endereco" class="form-control" />
                 <span asp-validation-for="Endereco" class="text-danger"></span>
             </div>
-            @if(Model.FileUrl != null)
+            @if (Model.FileUrl != null)
             {
                 <img src="@Model.FileUrl" />
             }
+            <div class="form-group">
+                <label asp-for="Photo" class="control-label"></label>
+                <input asp-for="Photo" class="form-control" type="file" />
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Salvar" class="btn btn-primary" />
                 <a asp-action="Index" class="btn btn-light">Back to List</a>

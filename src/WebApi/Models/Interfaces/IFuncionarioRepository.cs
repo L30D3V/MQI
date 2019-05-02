@@ -32,8 +32,10 @@ namespace WebApi.Models
         /// Edita funcionário salvo no banco de dados
         /// </summary>
         /// <param name="funcionario">Funcionário</param>
+        /// <param name="Photo">Array de bytes da Imagem</param>
+        /// <param name="fileName">Nome da Imagem</param>
         /// <returns>OK se sucesso e NotOK se falhar</returns>
-        bool EditFuncionario(Funcionario funcionario);
+        bool EditFuncionario(Funcionario funcionario, byte[] Photo, string fileName);
 
         /// <summary>
         /// Remove funcionário salvo no banco de dados de acordo com o CPF informado

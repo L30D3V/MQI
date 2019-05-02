@@ -8,10 +8,12 @@ namespace WebApi.Controllers
 {
     public class FuncionarioController : Controller
     {
+        // Cria varíavel global para conexão com repositório
         private readonly IFuncionarioRepository _repo;
 
         public FuncionarioController(IFuncionarioRepository repo)
         {
+            // Inicializa repositório no Constructor
             _repo = repo;
         }
 
@@ -21,6 +23,7 @@ namespace WebApi.Controllers
         {
             try
             {
+                // Recupera lista de funcionários
                 List<Funcionario> funcionarios = _repo.GetAllFuncionarios();
                 return View(funcionarios);
             }
@@ -44,6 +47,7 @@ namespace WebApi.Controllers
         {
             try
             {
+                // Recupera dados do formulário e cria novo model para salvar no BD
                 Funcionario funcionario = new Funcionario()
                 {
                     CPF = model.CPF,
@@ -53,12 +57,22 @@ namespace WebApi.Controllers
                     Tel = model.Tel
                 };
 
-                MemoryStream ms = new MemoryStream();
-                model.Photo.CopyTo(ms);
+                byte[] photo = null;
+                string filename = null;
 
-                byte[] photo = ms.ToArray();
-                string filename = model.Photo.FileName;
+                // Recupera array de bytes da foto caso exista
+                if (model.Photo != null)
+                {
+                    MemoryStream ms = new MemoryStream();
+                    model.Photo.CopyTo(ms);
+
+                    photo = ms.ToArray();
+                    filename = model.Photo.FileName;
+                }
+
+                // Salva funcionário no BD
                 _repo.RegisterFuncionario(funcionario, photo, filename);
+
 
                 TempData["Success"] = "Funcionário cadastrado com sucesso";
                 return RedirectToAction("Index");
@@ -76,6 +90,7 @@ namespace WebApi.Controllers
         {
             try
             {
+                // Recupera funcionário de acordo com CPF informado
                 FuncionarioView funcionario = _repo.GetFuncionario(CPF);
                 return View(funcionario);
             }
@@ -88,15 +103,40 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Route("Funcionario/EditarFuncionario")]
-        public IActionResult EditarFuncionario([FromForm] Funcionario funcionario)
+        public IActionResult EditarFuncionario([FromForm] FuncionarioView model)
         {
             try
             {
-                bool result = _repo.EditFuncionario(funcionario);
+                // Recupera dados do formulário e cria novo model para salvar no BD
+                Funcionario funcionario = new Funcionario()
+                {
+                    CPF = model.CPF,
+                    Email = model.Email,
+                    Endereco = model.Endereco,
+                    Nome = model.Nome,
+                    Tel = model.Tel
+                };
+
+                byte[] photo = null;
+                string filename = null;
+
+                // Cria array de bytes da foto caso exista
+                if (model.Photo != null)
+                {
+                    MemoryStream ms = new MemoryStream();
+                    model.Photo.CopyTo(ms);
+
+                    photo = ms.ToArray();
+                    filename = model.Photo.FileName;
+                }
+
+                // Atualiza valores do funcionário no BD
+                bool result = _repo.EditFuncionario(funcionario, photo, filename);
+
                 if (result)
                 {
                     TempData["Success"] = "Funcionário editado com sucesso.";
-                    return View(funcionario);
+                    return View(model);
                 }
                 else
                 {
@@ -106,7 +146,7 @@ namespace WebApi.Controllers
             catch (Exception ex)
             {
                 TempData["Error"] = ex;
-                return View(funcionario);
+                return View(model);
             }
         }
 
@@ -116,6 +156,7 @@ namespace WebApi.Controllers
         {
             try
             {
+                // Remove funcionário no BD
                 bool result = _repo.DelFuncionario(CPF);
                 if (result)
                 {
