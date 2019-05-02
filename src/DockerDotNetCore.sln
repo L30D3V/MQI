@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi.Test.Unit", "WebApi.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{3203F99D-7D11-4EC3-A797-BE361479D885}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebInterface", "WebInterface\WebInterface.csproj", "{D875A481-C444-460F-8255-AC9D17AB18D9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,18 +69,6 @@ Global
 		{3203F99D-7D11-4EC3-A797-BE361479D885}.Release|x64.Build.0 = Release|Any CPU
 		{3203F99D-7D11-4EC3-A797-BE361479D885}.Release|x86.ActiveCfg = Release|Any CPU
 		{3203F99D-7D11-4EC3-A797-BE361479D885}.Release|x86.Build.0 = Release|Any CPU
-		{D875A481-C444-460F-8255-AC9D17AB18D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D875A481-C444-460F-8255-AC9D17AB18D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D875A481-C444-460F-8255-AC9D17AB18D9}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{D875A481-C444-460F-8255-AC9D17AB18D9}.Debug|x64.Build.0 = Debug|Any CPU
-		{D875A481-C444-460F-8255-AC9D17AB18D9}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D875A481-C444-460F-8255-AC9D17AB18D9}.Debug|x86.Build.0 = Debug|Any CPU
-		{D875A481-C444-460F-8255-AC9D17AB18D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D875A481-C444-460F-8255-AC9D17AB18D9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D875A481-C444-460F-8255-AC9D17AB18D9}.Release|x64.ActiveCfg = Release|Any CPU
-		{D875A481-C444-460F-8255-AC9D17AB18D9}.Release|x64.Build.0 = Release|Any CPU
-		{D875A481-C444-460F-8255-AC9D17AB18D9}.Release|x86.ActiveCfg = Release|Any CPU
-		{D875A481-C444-460F-8255-AC9D17AB18D9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
