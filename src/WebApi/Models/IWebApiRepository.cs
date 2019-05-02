@@ -31,5 +31,8 @@ namespace WebApi.Models
 
         // Editar valor
         bool EditById(ValuePairTest value);
+
+        // Inserir novo valor
+        void InsertValue(ValuePairTest value);
     }
 }

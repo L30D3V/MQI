@@ -98,5 +98,12 @@ namespace WebApi.Models
                 throw new Exception("Erro ao atualizar o valor.", ex);
             }
         }
+
+        // Insere novo valor no banco de dados
+        public void InsertValue(ValuePairTest value)
+        {
+            value.id = Guid.NewGuid().ToString();
+            _context.TestValues.InsertOne(value);
+        }
     }
 }

@@ -4,21 +4,24 @@
     ViewData["Title"] = "Início";
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="col-md-12">
+        <h2>Projeto MostQI</h2>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Adicionar</a>
-</p>
-<table class="table">
+<div class="row">
+    <div class="col-md-4">
+        <a asp-action="Create" class="btn btn-primary btn-sm">Adicionar</a>
+    </div>
+</div>
+<hr />
+<table class="table table-striped">
     <thead>
         <tr>
-            <th>
-                @Html.Display("Id")
-            </th>
-            <th>
-                @Html.Display("Valor")
-            </th>
-            <th></th>
+            <th>Id</th>
+            <th>Valor</th>
+            <th>Opções</th>
         </tr>
     </thead>
     <tbody>
@@ -31,10 +34,10 @@
                 @Html.DisplayFor(modelItem => item.value)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Excluir", "Delete", new { id = item.id })
+                @Html.ActionLink("Editar", "Edit", new { id = item.id }, new { @class = "btn btn-sm btn-light" })
+                @Html.ActionLink("Excluir", "Delete", new { id = item.id }, new { @class = "btn btn-sm btn-danger" })
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>

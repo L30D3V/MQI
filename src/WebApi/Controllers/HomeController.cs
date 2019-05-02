@@ -27,6 +27,29 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
+        [Route("Create")]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("Create")]
+        public IActionResult Create(ValuePairTest valuePair)
+        {
+            try
+            {
+                _repo.InsertValue(valuePair);
+                TempData["Success"] = "Registro criado com sucesso.";
+            }
+            catch(Exception ex)
+            {
+                TempData["Error"] = "Erro ao inserir novo valor. Código do erro: " + ex.Message;
+            }
+            return View(valuePair);
+        }
+
+        [HttpGet]
         [Route("Edit/{id}")]
         public IActionResult Edit(string id)
         {
