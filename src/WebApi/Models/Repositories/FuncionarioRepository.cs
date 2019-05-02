@@ -1,6 +1,10 @@
-﻿using MongoDB.Driver;
+﻿using Microsoft.AspNetCore.Http;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoDB.Driver.GridFS;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,10 +13,12 @@ namespace WebApi.Models
     public class FuncionarioRepository : IFuncionarioRepository
     {
         private readonly IWebApiContext _context;
+        private readonly GridFSBucket _gridFS;
 
         public FuncionarioRepository(IWebApiContext context)
         {
             _context = context;
+            _gridFS = context.GridFS;
         }
 
         public bool DelFuncionario(string CPF)
@@ -54,11 +60,29 @@ namespace WebApi.Models
             }
         }
 
-        public Funcionario GetFuncionario(string CPF)
+        public FuncionarioView GetFuncionario(string CPF)
         {
             try
             {
-                return _context.Funcionarios.Find(x => x.CPF == CPF).FirstOrDefault();
+                Funcionario funcionario = _context.Funcionarios.Find(x => x.CPF == CPF).FirstOrDefault();
+
+                FuncionarioView data = new FuncionarioView()
+                {
+                    CPF = funcionario.CPF,
+                    Email = funcionario.Email,
+                    Endereco = funcionario.Endereco,
+                    Nome = funcionario.Nome,
+                    Tel = funcionario.Tel,
+                };
+
+                if (funcionario.Photo != null)
+                {
+                    byte[] photo = _gridFS.DownloadAsBytes(funcionario.Photo);
+                    string base64string = Convert.ToBase64String(photo, 0, photo.Length);
+                    data.FileUrl = "data:image/png;base64," + base64string;
+                }
+
+                return data;
             }
             catch(Exception ex)
             {
@@ -66,10 +90,12 @@ namespace WebApi.Models
             }
         }
 
-        public void RegisterFuncionario(Funcionario funcionario)
+        public void RegisterFuncionario(Funcionario funcionario, byte[] Photo, string fileName)
         {
             try
             {
+                ObjectId photoId = _gridFS.UploadFromBytes(fileName, Photo);
+                funcionario.Photo = photoId;
                 _context.Funcionarios.InsertOne(funcionario);
             }
             catch (Exception ex)

@@ -18,13 +18,15 @@ namespace WebApi.Models
         /// </summary>
         /// <param name="CPF">CPF</param>
         /// <returns>Funcionário</returns>
-        Funcionario GetFuncionario(string CPF);
+        FuncionarioView GetFuncionario(string CPF);
 
         /// <summary>
         /// Registra novo funcionário no banco de dados.
         /// </summary>
         /// <param name="funcionario">Funcionário</param>
-        void RegisterFuncionario(Funcionario funcionario);
+        /// <param name="Photo">Array de bytes da Imagem</param>
+        /// <param name="fileName">Nome da Imagem</param>
+        void RegisterFuncionario(Funcionario funcionario, byte[] Photo, string fileName);
 
         /// <summary>
         /// Edita funcionário salvo no banco de dados

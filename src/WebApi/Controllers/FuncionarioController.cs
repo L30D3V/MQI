@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
 
@@ -39,11 +40,25 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Route("Funcionario/CadastrarFuncionario")]
-        public IActionResult CadastrarFuncionario([FromForm] Funcionario funcionario)
+        public IActionResult CadastrarFuncionario([FromForm] FuncionarioView model)
         {
             try
             {
-                _repo.RegisterFuncionario(funcionario);
+                Funcionario funcionario = new Funcionario()
+                {
+                    CPF = model.CPF,
+                    Email = model.Email,
+                    Endereco = model.Endereco,
+                    Nome = model.Nome,
+                    Tel = model.Tel
+                };
+
+                MemoryStream ms = new MemoryStream();
+                model.Photo.CopyTo(ms);
+
+                byte[] photo = ms.ToArray();
+                string filename = model.Photo.FileName;
+                _repo.RegisterFuncionario(funcionario, photo, filename);
 
                 TempData["Success"] = "Funcionário cadastrado com sucesso";
                 return RedirectToAction("Index");
@@ -51,7 +66,7 @@ namespace WebApi.Controllers
             catch (Exception ex)
             {
                 TempData["Error"] = ex;
-                return View(funcionario);
+                return View(model);
             }
         }
 
@@ -61,7 +76,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                Funcionario funcionario = _repo.GetFuncionario(CPF);
+                FuncionarioView funcionario = _repo.GetFuncionario(CPF);
                 return View(funcionario);
             }
             catch (Exception ex)

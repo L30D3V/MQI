@@ -1,4 +1,4 @@
-﻿@model WebApi.Models.Funcionario
+﻿@model WebApi.Models.FuncionarioView
 
 @{
     ViewData["Title"] = "Editar";
@@ -37,6 +37,10 @@
                 <input asp-for="Endereco" class="form-control" />
                 <span asp-validation-for="Endereco" class="text-danger"></span>
             </div>
+            @if(Model.FileUrl != null)
+            {
+                <img src="@Model.FileUrl" />
+            }
             <div class="form-group">
                 <input type="submit" value="Salvar" class="btn btn-primary" />
                 <a asp-action="Index" class="btn btn-light">Back to List</a>
