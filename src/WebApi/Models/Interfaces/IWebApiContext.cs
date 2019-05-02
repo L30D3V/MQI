@@ -5,5 +5,6 @@ namespace WebApi.Models
     public interface IWebApiContext
     {
         IMongoCollection<ValuePairTest> TestValues { get; }
+        IMongoCollection<Funcionario> Funcionarios { get; }
     }
 }

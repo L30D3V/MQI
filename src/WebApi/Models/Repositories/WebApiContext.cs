@@ -14,5 +14,6 @@ namespace WebApi.Models
         }
 
         public IMongoCollection<ValuePairTest> TestValues => _db.GetCollection<ValuePairTest>("values");
+        public IMongoCollection<Funcionario> Funcionarios => _db.GetCollection<Funcionario>("Funcionarios");
     }
 }
