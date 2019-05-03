@@ -37,8 +37,10 @@ namespace WebApi
 
             var todoContext = new WebApiContext(config.MongoDB);
             var repo = new WebApiRepository(todoContext);
+            var rept = new FuncionarioRepository(todoContext);
 
             services.AddSingleton<IWebApiRepository>(repo);
+            services.AddSingleton<IFuncionarioRepository>(rept);
 
             // Add framework services.
             services.AddMvc();
