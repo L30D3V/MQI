@@ -2,6 +2,7 @@
 *        CSS Global da Aplicação          *
 *        Desenvolvido por: L30D3V         *
 ******************************************/
+
 html {
     height: 100%;
 }
@@ -20,6 +21,7 @@ body {
 
 #menu-and-content {
     min-height: 100%;
+    margin-bottom: 5em;
 }
 
 .body-content {
@@ -38,4 +40,9 @@ footer {
 
 .bg-personalized {
     background-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+.control-label {
+    margin-bottom: 0.1rem !important;
+    margin-top: 0.3rem !important;
 }
