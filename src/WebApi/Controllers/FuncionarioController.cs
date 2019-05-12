@@ -18,7 +18,6 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("Funcionario/")]
         public IActionResult Index()
         {
             try
@@ -35,14 +34,12 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("Funcionario/CadastrarFuncionario")]
         public IActionResult CadastrarFuncionario()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("Funcionario/CadastrarFuncionario")]
         public IActionResult CadastrarFuncionario([FromForm] FuncionarioView model)
         {
             try
@@ -85,7 +82,6 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("Funcionario/EditarFuncionario")]
         public IActionResult EditarFuncionario(string CPF)
         {
             try
@@ -102,7 +98,6 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("Funcionario/EditarFuncionario")]
         public IActionResult EditarFuncionario([FromForm] FuncionarioView model)
         {
             try
@@ -151,7 +146,6 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("Funcionario/DeletarFuncionario")]
         public IActionResult DeletarFuncionario(string CPF)
         {
             try
