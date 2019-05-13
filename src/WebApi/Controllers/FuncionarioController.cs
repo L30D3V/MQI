@@ -70,7 +70,6 @@ namespace WebApi.Controllers
                 // Salva funcionário no BD
                 _repo.RegisterFuncionario(funcionario, photo, filename);
 
-
                 TempData["Success"] = "Funcionário cadastrado com sucesso";
                 return RedirectToAction("Index");
             }
@@ -131,7 +130,7 @@ namespace WebApi.Controllers
                 if (result)
                 {
                     TempData["Success"] = "Funcionário editado com sucesso.";
-                    return View(model);
+                    return RedirectToAction("Index");
                 }
                 else
                 {
@@ -141,7 +140,7 @@ namespace WebApi.Controllers
             catch (Exception ex)
             {
                 TempData["Error"] = ex;
-                return View(model);
+                return RedirectToAction("Index");
             }
         }
 

@@ -6,9 +6,16 @@
 
 <h2>Funcionários</h2>
 
+@if(TempData["Success"] != null) {
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if(TempData["Error"] != null) {
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
 <p>
     <a asp-action="CadastrarFuncionario" class="btn btn-sm btn-primary">Novo Funcionário</a>
 </p>
+<hr />
 <table class="table">
     <thead>
         <tr>
