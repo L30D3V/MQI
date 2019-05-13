@@ -7,6 +7,13 @@
 <h2>Cadastrar Funcionário</h2>
 <h4>Informe os dados do funcionário</h4>
 
+@if(TempData["Success"] != null) {
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if(TempData["Error"] != null) {
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
 <hr />
 <div class="row">
     <form asp-action="CadastrarFuncionario" enctype="multipart/form-data" class="col-md-12">
