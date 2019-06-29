@@ -1,4 +1,4 @@
-# Projeto: MostQI
+# Projeto
 ### Desenvolvimento de sistema .NET Core com MongoDB + ElasticSearch running on Docker
 
 #### Executar o projeto
